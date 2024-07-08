@@ -36,8 +36,7 @@ Please setup Konga (Kong GUI):
 At default a few Kong services / routes and plugins are assigned.
 
 ```
-localhost:8000/auth => host.docker.internal:9100
-localhost:8000/geo => host.docker.internal:9200
+localhost:8000/login => host.docker.internal:9100
 ```
 
 `host.docker.internal` routes to the host machine, so we can add any service that is locally running.
