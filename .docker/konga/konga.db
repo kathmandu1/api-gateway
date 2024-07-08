@@ -1,0 +1,1600 @@
+{
+  "data": {
+    "konga_api_health_checks": [],
+    "konga_email_transports": [
+      {
+        "id": 1,
+        "name": "smtp",
+        "description": "Send emails using the SMTP protocol",
+        "schema": [
+          {
+            "name": "host",
+            "description": "The SMTP host",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "port",
+            "description": "The SMTP port",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "username",
+            "model": "auth.user",
+            "description": "The SMTP user username",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "password",
+            "model": "auth.pass",
+            "description": "The SMTP user password",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "secure",
+            "model": "secure",
+            "description": "Use secure connection",
+            "type": "boolean"
+          }
+        ],
+        "settings": {
+          "host": "",
+          "port": "",
+          "auth": {
+            "user": "",
+            "pass": ""
+          },
+          "secure": false
+        },
+        "active": true,
+        "createdAt": "2022-07-10T09:32:01.090Z",
+        "updatedAt": "2024-07-08T10:31:40.039Z"
+      },
+      {
+        "id": 2,
+        "name": "sendmail",
+        "description": "Pipe messages to the sendmail command",
+        "settings": {
+          "sendmail": true
+        },
+        "active": false,
+        "createdAt": "2022-07-10T09:32:01.091Z",
+        "updatedAt": "2024-07-08T10:31:40.055Z"
+      },
+      {
+        "id": 3,
+        "name": "mailgun",
+        "description": "Send emails through Mailgun’s Web API",
+        "schema": [
+          {
+            "name": "api_key",
+            "model": "auth.api_key",
+            "description": "The API key that you got from www.mailgun.com/cp",
+            "type": "text",
+            "required": true
+          },
+          {
+            "name": "domain",
+            "model": "auth.domain",
+            "description": "One of your domain names listed at your https://mailgun.com/app/domains",
+            "type": "text",
+            "required": true
+          }
+        ],
+        "settings": {
+          "auth": {
+            "api_key": "",
+            "domain": ""
+          }
+        },
+        "active": false,
+        "createdAt": "2022-07-10T09:32:01.099Z",
+        "updatedAt": "2024-07-08T10:31:40.064Z"
+      }
+    ],
+    "konga_kong_nodes": [
+      {
+        "id": 1,
+        "name": "kong",
+        "type": "default",
+        "kong_admin_url": "http://kong:8001",
+        "kong_api_key": "",
+        "jwt_algorithm": "HS256",
+        "username": "",
+        "password": "",
+        "kong_version": "2.8.1",
+        "health_checks": false,
+        "active": false,
+        "createdAt": "2022-07-10T09:32:23.592Z",
+        "updatedAt": "2022-07-10T09:32:43.612Z"
+      }
+    ],
+    "konga_kong_services": [
+      {
+        "id": 1,
+        "service_id": "57aa99e5-ec78-4816-9380-1c98c896a7a3",
+        "kong_node_id": "1",
+        "description": "Geo service",
+        "createdAt": "2022-07-10T09:35:34.561Z",
+        "updatedAt": "2022-07-10T09:43:21.473Z"
+      },
+      {
+        "id": 2,
+        "service_id": "604692bf-8c8e-4593-933d-4e16179f6fc4",
+        "kong_node_id": "1",
+        "description": "Authentication service",
+        "createdAt": "2022-07-10T09:40:34.968Z",
+        "updatedAt": "2022-07-10T09:40:34.968Z"
+      },
+      {
+        "id": 3,
+        "service_id": "5afd7130-9a52-4e95-863d-37020f9c5d9e",
+        "kong_node_id": "1",
+        "description": "Authenticaton service",
+        "createdAt": "2022-07-10T10:02:10.602Z",
+        "updatedAt": "2022-07-10T10:02:10.602Z"
+      },
+      {
+        "id": 4,
+        "service_id": "4ca8467e-c82d-4346-9873-eddcc4001955",
+        "kong_node_id": "1",
+        "description": "Geo service",
+        "createdAt": "2022-07-10T10:02:30.604Z",
+        "updatedAt": "2022-07-10T10:09:45.069Z"
+      }
+    ],
+    "konga_netdata_connections": [],
+    "konga_passports": [],
+    "konga_settings": [
+      {
+        "id": 1,
+        "data": {
+          "signup_enable": false,
+          "signup_require_activation": false,
+          "info_polling_interval": 5000,
+          "email_default_sender_name": "KONGA",
+          "email_default_sender": "konga@konga.test",
+          "email_notifications": false,
+          "default_transport": "sendmail",
+          "notify_when": {
+            "node_down": {
+              "title": "A node is down or unresponsive",
+              "description": "Health checks must be enabled for the nodes that need to be monitored.",
+              "active": false
+            },
+            "api_down": {
+              "title": "An API is down or unresponsive",
+              "description": "Health checks must be enabled for the APIs that need to be monitored.",
+              "active": false
+            }
+          },
+          "integrations": [
+            {
+              "id": "slack",
+              "name": "Slack",
+              "image": "slack_rgb.png",
+              "config": {
+                "enabled": false,
+                "fields": [
+                  {
+                    "id": "slack_webhook_url",
+                    "name": "Slack Webhook URL",
+                    "type": "text",
+                    "required": true,
+                    "value": ""
+                  }
+                ],
+                "slack_webhook_url": ""
+              }
+            }
+          ],
+          "user_permissions": {
+            "apis": {
+              "create": false,
+              "read": true,
+              "update": false,
+              "delete": false
+            },
+            "services": {
+              "create": false,
+              "read": true,
+              "update": false,
+              "delete": false
+            },
+            "routes": {
+              "create": false,
+              "read": true,
+              "update": false,
+              "delete": false
+            },
+            "consumers": {
+              "create": false,
+              "read": true,
+              "update": false,
+              "delete": false
+            },
+            "plugins": {
+              "create": false,
+              "read": true,
+              "update": false,
+              "delete": false
+            },
+            "upstreams": {
+              "create": false,
+              "read": true,
+              "update": false,
+              "delete": false
+            },
+            "certificates": {
+              "create": false,
+              "read": true,
+              "update": false,
+              "delete": false
+            },
+            "connections": {
+              "create": false,
+              "read": true,
+              "update": false,
+              "delete": false
+            },
+            "users": {
+              "create": false,
+              "read": true,
+              "update": false,
+              "delete": false
+            }
+          }
+        },
+        "createdAt": "2022-07-10T09:32:01.125Z",
+        "updatedAt": "2024-07-08T10:31:40.090Z"
+      }
+    ],
+    "konga_kong_snapshots": [
+      {
+        "id": 2,
+        "name": "snapshot",
+        "kong_node_name": "kong",
+        "kong_node_url": "http://kong:8001",
+        "kong_version": "2.8.1",
+        "data": {
+          "services": [
+            {
+              "id": "4ca8467e-c82d-4346-9873-eddcc4001955",
+              "path": null,
+              "name": "geo",
+              "connect_timeout": 60000,
+              "read_timeout": 60000,
+              "tags": [
+                "geo"
+              ],
+              "ca_certificates": null,
+              "retries": 5,
+              "write_timeout": 60000,
+              "protocol": "http",
+              "tls_verify": null,
+              "port": 9200,
+              "host": "host.docker.internal",
+              "tls_verify_depth": null,
+              "created_at": 1657447350,
+              "updated_at": 1657447785,
+              "client_certificate": null,
+              "enabled": true,
+              "extras": {
+                "id": 4,
+                "service_id": "4ca8467e-c82d-4346-9873-eddcc4001955",
+                "kong_node_id": "1",
+                "description": "Geo service",
+                "createdAt": "2022-07-10T10:02:30.604Z",
+                "updatedAt": "2022-07-10T10:09:45.069Z"
+              }
+            },
+            {
+              "id": "5afd7130-9a52-4e95-863d-37020f9c5d9e",
+              "path": null,
+              "name": "auth",
+              "connect_timeout": 60000,
+              "read_timeout": 60000,
+              "tags": [
+                "auth"
+              ],
+              "ca_certificates": null,
+              "retries": 5,
+              "write_timeout": 60000,
+              "protocol": "http",
+              "tls_verify": null,
+              "port": 9100,
+              "host": "host.docker.internal",
+              "tls_verify_depth": null,
+              "created_at": 1657447330,
+              "updated_at": 1657447702,
+              "client_certificate": null,
+              "enabled": true,
+              "extras": {
+                "id": 3,
+                "service_id": "5afd7130-9a52-4e95-863d-37020f9c5d9e",
+                "kong_node_id": "1",
+                "description": "Authenticaton service",
+                "createdAt": "2022-07-10T10:02:10.602Z",
+                "updatedAt": "2022-07-10T10:02:10.602Z"
+              }
+            }
+          ],
+          "routes": [
+            {
+              "id": "22a9832d-4445-4ac9-98c5-6fe65076aae4",
+              "hosts": null,
+              "name": "auth",
+              "path_handling": "v1",
+              "snis": null,
+              "tags": [
+                "auth"
+              ],
+              "headers": null,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "regex_priority": 0,
+              "paths": [
+                "/auth"
+              ],
+              "methods": null,
+              "sources": null,
+              "destinations": null,
+              "service": {
+                "id": "5afd7130-9a52-4e95-863d-37020f9c5d9e"
+              },
+              "request_buffering": true,
+              "response_buffering": true,
+              "strip_path": true,
+              "created_at": 1657447381,
+              "updated_at": 1657447702,
+              "preserve_host": false,
+              "https_redirect_status_code": 426
+            },
+            {
+              "id": "fb2893fe-fc2b-49fc-8792-3b2458ce2109",
+              "hosts": null,
+              "name": "geo",
+              "path_handling": "v1",
+              "snis": null,
+              "tags": [
+                "geo"
+              ],
+              "headers": null,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "regex_priority": 0,
+              "paths": [
+                "/geo"
+              ],
+              "methods": null,
+              "sources": null,
+              "destinations": null,
+              "service": {
+                "id": "4ca8467e-c82d-4346-9873-eddcc4001955"
+              },
+              "request_buffering": true,
+              "response_buffering": true,
+              "strip_path": true,
+              "created_at": 1657447364,
+              "updated_at": 1657447702,
+              "preserve_host": false,
+              "https_redirect_status_code": 426
+            }
+          ],
+          "consumers": [],
+          "plugins": [
+            {
+              "id": "c32f9993-5633-402a-933b-a1ec69265ba5",
+              "name": "acl",
+              "config": {
+                "allow": [
+                  "user",
+                  "admin",
+                  "manager",
+                  "geo"
+                ],
+                "hide_groups_header": false,
+                "deny": null
+              },
+              "service": null,
+              "consumer": null,
+              "tags": null,
+              "route": {
+                "id": "fb2893fe-fc2b-49fc-8792-3b2458ce2109"
+              },
+              "created_at": 1657447406,
+              "protocols": [
+                "grpc",
+                "grpcs",
+                "http",
+                "https"
+              ],
+              "enabled": true
+            },
+            {
+              "id": "e7a05cad-f5ff-4cbb-9fff-5637e76c8fcb",
+              "name": "jwt",
+              "config": {
+                "secret_is_base64": false,
+                "uri_param_names": [
+                  "jwt"
+                ],
+                "cookie_names": [],
+                "header_names": [
+                  "authorization"
+                ],
+                "claims_to_verify": null,
+                "maximum_expiration": 0,
+                "run_on_preflight": true,
+                "anonymous": null,
+                "key_claim_name": "iss"
+              },
+              "service": null,
+              "consumer": null,
+              "tags": null,
+              "route": {
+                "id": "fb2893fe-fc2b-49fc-8792-3b2458ce2109"
+              },
+              "created_at": 1657447396,
+              "protocols": [
+                "grpc",
+                "grpcs",
+                "http",
+                "https"
+              ],
+              "enabled": true
+            }
+          ],
+          "acls": [],
+          "upstreams": [],
+          "certificates": [],
+          "snis": []
+        },
+        "createdAt": "2022-07-10T10:10:12.831Z",
+        "updatedAt": "2022-07-10T10:10:12.831Z"
+      },
+      {
+        "name": "Authetication microservice",
+        "kong_node_name": "kong",
+        "kong_node_url": "http://kong:8001",
+        "kong_version": "2.8.1",
+        "data": {
+          "services": [
+            {
+              "id": "4ca8467e-c82d-4346-9873-eddcc4001955",
+              "created_at": 1657447350,
+              "updated_at": 1720180998,
+              "host": "host.docker.internal",
+              "tags": [
+                "geo"
+              ],
+              "tls_verify": null,
+              "retries": 5,
+              "path": null,
+              "port": 9200,
+              "ca_certificates": null,
+              "enabled": true,
+              "client_certificate": null,
+              "write_timeout": 60000,
+              "connect_timeout": 60000,
+              "protocol": "http",
+              "read_timeout": 60000,
+              "tls_verify_depth": null,
+              "name": "geo",
+              "extras": {
+                "id": 4,
+                "service_id": "4ca8467e-c82d-4346-9873-eddcc4001955",
+                "kong_node_id": "1",
+                "description": "Geo service",
+                "createdAt": "2022-07-10T10:02:30.604Z",
+                "updatedAt": "2022-07-10T10:09:45.069Z"
+              }
+            },
+            {
+              "id": "5afd7130-9a52-4e95-863d-37020f9c5d9e",
+              "created_at": 1657447330,
+              "updated_at": 1720180998,
+              "host": "host.docker.internal",
+              "tags": [
+                "auth"
+              ],
+              "tls_verify": null,
+              "retries": 5,
+              "path": null,
+              "port": 9100,
+              "ca_certificates": null,
+              "enabled": true,
+              "client_certificate": null,
+              "write_timeout": 60000,
+              "connect_timeout": 60000,
+              "protocol": "http",
+              "read_timeout": 60000,
+              "tls_verify_depth": null,
+              "name": "auth",
+              "extras": {
+                "id": 3,
+                "service_id": "5afd7130-9a52-4e95-863d-37020f9c5d9e",
+                "kong_node_id": "1",
+                "description": "Authenticaton service",
+                "createdAt": "2022-07-10T10:02:10.602Z",
+                "updatedAt": "2022-07-10T10:02:10.602Z"
+              }
+            },
+            {
+              "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0",
+              "created_at": 1720167436,
+              "updated_at": 1720180998,
+              "host": "host.docker.internal",
+              "tags": [
+                "authentication"
+              ],
+              "tls_verify": null,
+              "retries": 5,
+              "path": null,
+              "port": 7000,
+              "ca_certificates": null,
+              "enabled": true,
+              "client_certificate": null,
+              "write_timeout": 60000,
+              "connect_timeout": 60000,
+              "protocol": "http",
+              "read_timeout": 60000,
+              "tls_verify_depth": null,
+              "name": "mero_discount_authentication",
+              "extras": {}
+            }
+          ],
+          "routes": [
+            {
+              "preserve_host": false,
+              "id": "3c90a2f0-c0a9-4f5f-8d26-a3f451e94543",
+              "created_at": 1720436411,
+              "updated_at": 1720436411,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/api/v2/verification/forgotpassword"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "forgot password"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "ForgetPassword"
+            },
+            {
+              "preserve_host": false,
+              "id": "49dd9898-261a-4630-983a-f04ae7591775",
+              "created_at": 1720435379,
+              "updated_at": 1720435379,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/api/v2/auth/otpverifications"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "save otp verifiction code"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "SaveOtpVerification"
+            },
+            {
+              "preserve_host": false,
+              "id": "55910c75-b5c2-4792-a5b8-56042847c254",
+              "created_at": 1720436491,
+              "updated_at": 1720436491,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/api/v2/verification/verify"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "Otp verify"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "OtpVerify"
+            },
+            {
+              "preserve_host": false,
+              "id": "665dc0f0-6230-4f11-8980-5c188559a053",
+              "created_at": 1720168322,
+              "updated_at": 1720180998,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/api/v2/auth/login"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "login"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": false,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http"
+              ],
+              "sources": null,
+              "name": "login"
+            },
+            {
+              "preserve_host": false,
+              "id": "8b645fb2-6543-4c2c-8d5b-3222c5d3d134",
+              "created_at": 1720436099,
+              "updated_at": 1720436099,
+              "methods": [
+                "GET"
+              ],
+              "paths": [
+                "/api/v2/auth/user"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "Get Detail of User"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "UserDetail"
+            },
+            {
+              "preserve_host": false,
+              "id": "92af056f-ba41-47b8-ad23-549dad76a37a",
+              "created_at": 1720436458,
+              "updated_at": 1720436458,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/api/v2/verification/resendotp"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "Resent Otp"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "ResentOtp"
+            },
+            {
+              "preserve_host": false,
+              "id": "98281b5e-9ab5-4683-bab0-8ec6e512544e",
+              "created_at": 1720435592,
+              "updated_at": 1720435592,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/ api/v2/auth/resendotp "
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "resend otp code"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "ResendOTP"
+            },
+            {
+              "preserve_host": false,
+              "id": "a4125394-6d61-47e2-9157-2d6185c9c2c5",
+              "created_at": 1720436038,
+              "updated_at": 1720436038,
+              "methods": [
+                "GET"
+              ],
+              "paths": [
+                "/api/v2/auth/reset"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": null,
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "ResetPassword"
+            },
+            {
+              "preserve_host": false,
+              "id": "a6e7bc9a-7a97-47cb-b5a4-9137ac26c0b2",
+              "created_at": 1720436300,
+              "updated_at": 1720436300,
+              "methods": null,
+              "paths": [
+                "/ api/v2/auth/user"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "delete current user account"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "DeleteUser"
+            },
+            {
+              "preserve_host": false,
+              "id": "b3c7e3df-08a0-475f-a9c5-3b0ebfc368de",
+              "created_at": 1720172620,
+              "updated_at": 1720181273,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/api/v2/auth/logout"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "logout"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "logout"
+            },
+            {
+              "preserve_host": false,
+              "id": "c085ee1f-6c6a-495b-9739-953e3b78e41c",
+              "created_at": 1720435518,
+              "updated_at": 1720435518,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/ api/v2/auth/register "
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "create user"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "RegisterUser"
+            },
+            {
+              "preserve_host": false,
+              "id": "d14d2dc2-0774-4a7d-afcf-b77b9159aee6",
+              "created_at": 1720435294,
+              "updated_at": 1720435294,
+              "methods": [
+                "GET"
+              ],
+              "paths": [
+                "/ api/v2/auth/otpverifications "
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "otp verification"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "OTP_Verification"
+            },
+            {
+              "preserve_host": false,
+              "id": "d86dce14-8b8b-4f4c-a1da-9714b7149922",
+              "created_at": 1720436367,
+              "updated_at": 1720436367,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/api/v2/verification"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "verification"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "verification"
+            },
+            {
+              "preserve_host": false,
+              "id": "dc3d7609-98b3-45af-8a13-c8545afd10c0",
+              "created_at": 1720181522,
+              "updated_at": 1720181522,
+              "methods": [
+                "POST"
+              ],
+              "paths": [
+                "/api/v2/auth/forget"
+              ],
+              "snis": null,
+              "request_buffering": true,
+              "tags": [
+                "forget password"
+              ],
+              "https_redirect_status_code": 426,
+              "service": {
+                "id": "9c69fe3f-20d5-4b64-bdb7-28a5bfeeb7b0"
+              },
+              "path_handling": "v1",
+              "headers": null,
+              "hosts": null,
+              "destinations": null,
+              "strip_path": true,
+              "regex_priority": 0,
+              "response_buffering": true,
+              "protocols": [
+                "http",
+                "https"
+              ],
+              "sources": null,
+              "name": "forget_password"
+            }
+          ],
+          "consumers": [],
+          "plugins": [],
+          "acls": [],
+          "upstreams": [],
+          "certificates": [],
+          "snis": []
+        },
+        "createdAt": "2024-07-08T11:02:02.114Z",
+        "updatedAt": "2024-07-08T11:02:02.114Z",
+        "createdUserId": null,
+        "updatedUserId": null,
+        "id": 3
+      }
+    ],
+    "konga_kong_snapshot_schedules": [],
+    "konga_kong_upstream_alerts": [],
+    "konga_users": []
+  },
+  "schema": {
+    "konga_api_health_checks": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "api_id": {
+        "type": "string",
+        "unique": true
+      },
+      "api": {
+        "type": "json"
+      },
+      "health_check_endpoint": {
+        "type": "string"
+      },
+      "notification_endpoint": {
+        "type": "string"
+      },
+      "active": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "data": {
+        "type": "json"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    },
+    "konga_email_transports": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "name": {
+        "type": "string",
+        "unique": true
+      },
+      "description": {
+        "type": "string"
+      },
+      "schema": {
+        "type": "json"
+      },
+      "settings": {
+        "type": "json"
+      },
+      "active": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    },
+    "konga_kong_nodes": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "name": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "default",
+          "key_auth",
+          "jwt",
+          "basic_auth"
+        ],
+        "defaultsTo": "default"
+      },
+      "kong_admin_url": {
+        "type": "string"
+      },
+      "netdata_url": {
+        "type": "string"
+      },
+      "kong_api_key": {
+        "type": "string",
+        "defaultsTo": ""
+      },
+      "jwt_algorithm": {
+        "type": "string",
+        "enum": [
+          "HS256",
+          "RS256"
+        ],
+        "defaultsTo": "HS256"
+      },
+      "jwt_key": {
+        "type": "string"
+      },
+      "jwt_secret": {
+        "type": "string"
+      },
+      "username": {
+        "type": "string",
+        "defaultsTo": ""
+      },
+      "password": {
+        "type": "string",
+        "defaultsTo": ""
+      },
+      "kong_version": {
+        "type": "string",
+        "defaultsTo": "0-10-x"
+      },
+      "health_checks": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "health_check_details": {
+        "type": "json"
+      },
+      "active": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    },
+    "konga_kong_services": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "service_id": {
+        "type": "string",
+        "unique": true
+      },
+      "kong_node_id": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "tags": {
+        "type": "json"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    },
+    "konga_netdata_connections": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "apiId": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    },
+    "konga_passports": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "protocol": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      },
+      "provider": {
+        "type": "string"
+      },
+      "identifier": {
+        "type": "string"
+      },
+      "tokens": {
+        "type": "json"
+      },
+      "user": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "user"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "konga_settings": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "data": {
+        "type": "json"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    },
+    "konga_kong_snapshots": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "name": {
+        "type": "string",
+        "unique": true
+      },
+      "kong_node_name": {
+        "type": "string"
+      },
+      "kong_node_url": {
+        "type": "string"
+      },
+      "kong_version": {
+        "type": "string"
+      },
+      "data": {
+        "type": "json"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    },
+    "konga_kong_snapshot_schedules": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "connection": {
+        "type": "integer",
+        "model": "kongnode",
+        "foreignKey": true,
+        "alias": "connection"
+      },
+      "active": {
+        "type": "boolean",
+        "defaultsTo": true
+      },
+      "cron": {
+        "type": "string"
+      },
+      "lastRunAt": {
+        "type": "date",
+        "defaultsTo": null
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    },
+    "konga_kong_upstream_alerts": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "upstream_id": {
+        "type": "string",
+        "unique": true
+      },
+      "connection": {
+        "type": "integer",
+        "model": "kongnode",
+        "foreignKey": true,
+        "alias": "connection"
+      },
+      "email": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "slack": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "cron": {
+        "type": "string"
+      },
+      "active": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "data": {
+        "type": "json"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    },
+    "konga_users": {
+      "id": {
+        "type": "integer",
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true
+      },
+      "username": {
+        "type": "string",
+        "unique": true
+      },
+      "email": {
+        "type": "string",
+        "unique": true
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "admin": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "node_id": {
+        "type": "string",
+        "defaultsTo": ""
+      },
+      "active": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "activationToken": {
+        "type": "string"
+      },
+      "node": {
+        "type": "integer",
+        "model": "kongnode",
+        "foreignKey": true,
+        "alias": "node"
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      },
+      "createdUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "createdUser",
+        "defaultsTo": null
+      },
+      "updatedUserId": {
+        "type": "integer",
+        "model": "user",
+        "foreignKey": true,
+        "alias": "updatedUser",
+        "defaultsTo": null
+      }
+    }
+  },
+  "counters": {
+    "konga_api_health_checks": {},
+    "konga_email_transports": {
+      "id": 3
+    },
+    "konga_kong_nodes": {
+      "id": 1
+    },
+    "konga_kong_services": {
+      "id": 4
+    },
+    "konga_netdata_connections": {},
+    "konga_passports": {},
+    "konga_settings": {
+      "id": 1
+    },
+    "konga_kong_snapshots": {
+      "id": 3
+    },
+    "konga_kong_snapshot_schedules": {},
+    "konga_kong_upstream_alerts": {},
+    "konga_users": {}
+  }
+}
